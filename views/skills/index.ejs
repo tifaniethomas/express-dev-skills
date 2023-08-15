@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Express Skill List</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+    <a href="/">Home</a>
+    <h1>Skills</h1>
+    <ul>
+      <% skills.forEach(function(s) { %>
+        <li>
+          <a href="/skills/<%= s.id %>"><%= s.skill %></a>
+            - 
+          <%= s.done ? 'done' : 'not done' %>
+        </li>
+      <% }); %>
+    </ul>
+  </body>
+</html>
