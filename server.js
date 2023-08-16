@@ -13,11 +13,25 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use(logger('dev')); // logs requests into console
+// mount middleware into the middleware/request pipeline
+// app.use(<middleware function>)
+
+// log in the terminal the http request info
+app.use(logger('dev')); 
+//processes data sent n the body of the request if it's json
 app.use(express.json());
+//processes data sent in 'form' body of the request
+//creates property on req.body for each <nput>, <select> andor <text area> in the form
 app.use(express.urlencoded({ extended: false }));
+// add a cookies property for eachcookie sent in the request
 app.use(cookieParser());
+//if the request is for a static asset, returns the file 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(function(req, res, next) {
+  console.log('Hello SEI!')
+  res.locals.time = new Date().toLocaleTimeString()
+  next()
+})
 
 app.use('/', indexRouter);
 app.use('/skills', skillsRouter);
