@@ -8,3 +8,12 @@ body {
 a {
   color: purple;
 }
+
+.delete-form {
+  display: inline-block;
+  margin-top: 10px;
+}
+	
+li {
+  list-style: none;
+}
